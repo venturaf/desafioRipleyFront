@@ -1,1 +1,28 @@
-<p>deposit works!</p>
+<div class="container">
+    <div class="container" style="max-width: 550px;">
+        <form [formGroup]="formLogin" *ngIf="cargando">
+            <div class="mb-3">
+                <label for="rut" class="form-label">RUT</label>
+                <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Ingresa tu Rut">
+            </div>
+            <div class="mb-3">
+                <label for="balance" class="form-label">Monto a depositar</label>
+                <input type="password" (keyUp.enter)="login()" class="form-control" id="balance" formControlName="balance" placeholder="••••">
+            </div>
+            <button type="submit" [disabled]="!formLogin.valid" (click)="login()" class="btn btn-primary">Registrar</button>
+        </form>
+        <br>
+        <div >
+            <div class="alert alert-warning" role="alert">
+                {{message}}
+            </div>
+            <div class="alert alert-warning" role="alert">
+                {{message}}
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Volver</button>
+            <a href=""></a>
+        </div>
+    </div>
+</div>
