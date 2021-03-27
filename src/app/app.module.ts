@@ -13,6 +13,9 @@ import { DepositComponent } from './deposit/deposit.component';
 import { SessionComponent } from './session/session.component';
 import { ErrorInterceptor } from './config/errorInterceptor';
 import { ConfigService } from './config/config.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,9 @@ import { ConfigService } from './config/config.service';
     MenuComponent,
     HomeComponent,
     DepositComponent,
-    SessionComponent
+    SessionComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

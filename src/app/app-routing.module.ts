@@ -7,24 +7,14 @@ import { RegisterComponent } from './register/register.component';
 import { SessionComponent } from './session/session.component';
 
 const routes: Routes = [
-    {
-        path: '', component: LoginComponent
-    },
-    {
-        path: 'login', component: LoginComponent
-    },
-    {
-        path: 'register', component: RegisterComponent
-    },
-    {
-        path: 'home', component: HomeComponent
-    },
-    {
-        path: 'deposit', component: DepositComponent
-    },
-    {
-        path: 'session', component: SessionComponent
-    }
+    {path: '', component: LoginComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
+    {path: 'home', component: HomeComponent},
+    {path: 'deposit', component: DepositComponent},
+    {path: 'session', component: SessionComponent},
+
+    {path: '**', redirectTo: ''},
 ];
 
 @NgModule({

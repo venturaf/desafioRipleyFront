@@ -1,14 +1,16 @@
-{{loginCorrect}}
-<div>
-    <div class="text-center">
-        <div *ngIf="cargando">
-                <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<app-header></app-header>
+    <div class="" style="height: 100%;width: 100%; min-height: 506px;">
+        <div class="text-center">
+            <div *ngIf="cargando">
+                    <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            
         </div>
-        <div *ngIf="!cargando && loginCorrect" >
-            <app-menu></app-menu>
+        <div *ngIf="!cargando">
+            <div *ngIf="cargando">
+                <app-menu></app-menu>
+            </div>
+            <router-outlet></router-outlet>
         </div>
     </div>
-    <div *ngIf="!cargando" >
-        <router-outlet></router-outlet>
-    </div>
-</div>
+<app-footer></app-footer>
