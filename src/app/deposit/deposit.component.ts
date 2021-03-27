@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-deposit',
@@ -23,9 +23,4 @@ export class DepositComponent implements OnInit {
           balance:['', Validators.required,]
       });
   }
-
-  goBack() {
-    this.router.navigate(['/home']);
-  }
-
 }
