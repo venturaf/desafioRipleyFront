@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./withdraw.component.css']
 })
 export class WithdrawComponent implements OnInit {
-    formLogin: FormGroup;
+    formWithdraw: FormGroup;
     cargando: boolean = true;
     message: String = "";
 
@@ -18,7 +18,7 @@ export class WithdrawComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.formLogin = this.creadorFormulario.group({
+    this.formWithdraw = this.creadorFormulario.group({
         rut:['', Validators.compose([Validators.required,])],
         balance:['', Validators.required,]
     });

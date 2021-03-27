@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./deposit.component.css']
 })
 export class DepositComponent implements OnInit {
-    formLogin: FormGroup;
+    formDeposit: FormGroup;
     cargando: boolean = true;
     message: String = "";
 
@@ -18,7 +18,7 @@ export class DepositComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.formLogin = this.creadorFormulario.group({
+      this.formDeposit = this.creadorFormulario.group({
           rut:['', Validators.compose([Validators.required,])],
           balance:['', Validators.required,]
       });

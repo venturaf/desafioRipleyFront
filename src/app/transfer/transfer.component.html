@@ -1,1 +1,35 @@
-<p>transfer works!</p>
+<div class="card mb-3">
+    <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
+    <div class="card-body">
+        <h5 class="card-title">Bienvenido al mini Banco Desafio Ripley</h5>
+        <div class="containe">
+            <div class="card">
+                <h5 class="card-header">Franner Jose Ventura Contreras</h5>
+                <div class="card-body container" style="max-width: 550px;">
+                    <h5 class="card-header text-center">Realiazar transferencia</h5>
+                    <form [formGroup]="formTransfer" *ngIf="cargando">
+                        <div class="mb-3">
+                            <label for="rut" class="form-label">RUT</label>
+                            <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Ingresar Rut">
+                        </div>
+                        <div class="mb-3">
+                            <label for="balance" class="form-label">Monto a transferir</label>
+                            <input type="number" (keyUp.enter)="login()" class="form-control" id="balance" formControlName="balance" placeholder="Monto a transferir">
+                        </div>
+                        <div class="mb-3">
+                            <label for="rut" class="form-label">Cuenta</label>
+                            <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Nuemro de cuenta a transferir">
+                        </div>
+                        <button type="submit" [disabled]="!formTransfer.valid" (click)="login()" class="btn btn-success btn-primary">Transferir</button>
+                    </form>
+                    <br>
+                    <div>
+                        <button class="btn btn-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Volver</button>
+                        <a href=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>

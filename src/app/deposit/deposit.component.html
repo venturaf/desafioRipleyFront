@@ -7,7 +7,7 @@
                 <h5 class="card-header">Franner Jose Ventura Contreras</h5>
                 <div class="card-body container" style="max-width: 550px;">
                 <h5 class="card-header text-center">Realiazar deposito</h5>
-                    <form [formGroup]="formLogin" *ngIf="cargando">
+                    <form [formGroup]="formDeposit" *ngIf="cargando">
                         <div class="mb-3">
                             <label for="rut" class="form-label">RUT</label>
                             <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Ingresar Rut">
@@ -16,7 +16,7 @@
                             <label for="balance" class="form-label">Monto a depositar</label>
                             <input type="number" (keyUp.enter)="login()" class="form-control" id="balance" formControlName="balance" placeholder="Monto a depositar">
                         </div>
-                        <button type="submit" [disabled]="!formLogin.valid" (click)="login()" class="btn btn-primary">Depositar</button>
+                        <button type="submit" [disabled]="!formDeposit.valid" (click)="login()" class="btn btn-primary">Depositar</button>
                     </form>
                     <br>
                     <div>
