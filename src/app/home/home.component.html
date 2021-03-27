@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <img class="card-img-top header" src="" alt="Card image cap">
+  <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
   <div class="card-body">
     <h5 class="card-title">Bienvenido al mini Banco Desafio Ripley</h5>
     <div class="containe">
@@ -9,9 +9,14 @@
         <div class="card-body">
             <h5 class="card-title">Monto disponible</h5>
             <p class="card-text">{{ balance | currency }}</p>
-            <a href="#" class="btn btn-primary">Depositar</a>
-            <a href="#" class="btn btn-primary">Retirar</a>
-            <a href="#" class="btn btn-primary">Transferir</a>
+            <div class="buttonsHome">
+                <button type="button" class="btn btn-primary buttonsHome" [routerLink]="['/deposit']"  >Depositar</button>
+                <button type="button" class="btn btn-danger buttonsHome"  [routerLink]="['/withdraw']" >Retirar</button>
+                <button type="button" class="btn btn-success buttonsHome" [routerLink]="['/transfer']" >Transferir</button>
+                <button type="button" class="btn btn-info buttonsHome"    [routerLink]="['/history']"  >Movimientos</button>
+            </div>
+            
+
         </div>
         </div>
 

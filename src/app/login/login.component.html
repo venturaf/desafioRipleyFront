@@ -6,7 +6,7 @@
     <div *ngIf="cargando" class="text-center">
             <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
-    <div>
+    <div class="container" style="max-width: 550px;">
         <form [formGroup]="formLogin" *ngIf="!cargando" >
             <div class="mb-3">
                 <label for="rut" class="form-label">RUT</label>

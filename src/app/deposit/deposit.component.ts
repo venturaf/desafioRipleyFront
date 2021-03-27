@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
-=======
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-deposit',
@@ -11,17 +8,20 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./deposit.component.css']
 })
 export class DepositComponent implements OnInit {
+    formLogin: FormGroup;
+    cargando: boolean = true;
+    message: String = "";
 
-<<<<<<< Updated upstream
-  constructor() { }
-=======
   constructor(
       private creadorFormulario: FormBuilder,
       private router: Router,
   ) { }
->>>>>>> Stashed changes
 
   ngOnInit(): void {
+      this.formLogin = this.creadorFormulario.group({
+          rut:['', Validators.compose([Validators.required,])],
+          balance:['', Validators.required,]
+      });
   }
 
   goBack() {
