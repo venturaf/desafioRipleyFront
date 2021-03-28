@@ -16,7 +16,7 @@ export class AuthenticationService {
     }
 
     public get currentUserValue(): User {
-        console.log("busca usuario");
+        console.log(" Atuten");
         return this.currentUserSubject.value;
     }
 

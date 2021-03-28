@@ -1,23 +1,33 @@
 <div class="card mb-3">
-  <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
-  <div class="card-body">
-    
-    <div class="containe">
+    <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
+    <div class="card-body">
 
-        <div class="card">
-        <h5 class="card-header">Bienvenido Franner Jose Ventura Contreras</h5>
-        <div class="card-body">
-            <h5 class="card-title">Monto disponible</h5>
-            <p class="card-text">{{ balance | currency }}</p>
-            <div class="buttonsHome">
-                <button type="button" class="btn btn-primary buttonsHome" [routerLink]="['/deposit']">Depositar</button>
-                <button type="button" class="btn btn-danger buttonsHome"  [routerLink]="['/withdraw']">Retirar</button>
-                <button type="button" class="btn btn-success buttonsHome" [routerLink]="['/transfer']">Transferir</button>
-                <button type="button" class="btn btn-info buttonsHome"    [routerLink]="['/history']">Movimientos</button>
+        <div class="containe">
+
+            <div class="card">
+                <h5 class="card-header">Bienvenido {{currentUser.name}}</h5>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Datos personales
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{currentUser.rut}}</li>
+                        <li class="list-group-item">{{currentUser.email}}</li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Monto disponible</h5>
+                    <!-- <p class="card-text">{{ currentBalance | currency }}</p> -->
+                    <p class="card-text">{{ balance | currency }}</p>
+                    <div class="buttonsHome">
+                        <button type="button" class="btn btn-primary buttonsHome" [routerLink]="['/deposit']">Depositar</button>
+                        <button type="button" class="btn btn-danger buttonsHome" [routerLink]="['/withdraw']">Retirar</button>
+                        <button type="button" class="btn btn-success buttonsHome" [routerLink]="['/transfer']">Transferir</button>
+                        <button type="button" class="btn btn-info buttonsHome" [routerLink]="['/history']">Movimientos</button>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-  </div>
 </div>
