@@ -44,7 +44,7 @@ export class DepositComponent implements OnInit {
         let balance = this.formDeposit.value.balance
         let rut = this.currentUser.rut
         let url: string = "https://mynana.herokuapp.com/balance/deposit";
-            url = "http://localhost:8080/balance/deposit";
+            // url = "http://localhost:8080/balance/deposit";
         let payload: any = {rut, balance}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
