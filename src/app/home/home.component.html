@@ -19,7 +19,6 @@
                     <h5 class="card-title">Monto disponible</h5>
                     <button *ngIf="!balanceNow" type="submit" (click)="getBalance()" class="btn btn-primary">Actualizar</button>
                     <p *ngIf="balanceNow" class="card-text">{{ currentBalance.balance | currency }}</p>
-                    <p class="card-text">{{ balance | currency }}</p>
                     <div class="buttonsHome">
                         <button type="button" class="btn btn-primary buttonsHome" [routerLink]="['/deposit']">Depositar</button>
                         <button type="button" class="btn btn-danger buttonsHome" [routerLink]="['/withdraw']">Retirar</button>

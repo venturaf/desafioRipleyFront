@@ -6,7 +6,10 @@
             <div class="card">
                 <h5 class="card-header">Bienvenido Franner Jose Ventura Contreras</h5>
                 <div class="card-body container" style="max-width: 550px;">
-                <h5 class="card-header text-center">Realiazar deposito</h5>
+                <h5 class="card-header text-center">
+                    <div> Realiazar deposito</div>
+                    <div>Disponible: {{ currentBalance.balance | currency }}</div>
+                </h5>
                     <form [formGroup]="formDeposit" *ngIf="cargando">
                         <div class="mb-3">
                             <label for="rut" class="form-label">RUT</label>
