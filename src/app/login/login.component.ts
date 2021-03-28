@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfigService } from '../config/config.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private creadorFormulario: FormBuilder,
-    private loginsService: ConfigService,
+    private configService: ConfigService,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
         let rut = this.formLogin.value.rut
         let clave = this.formLogin.value.clave
         if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
-        // this.getLogins(rut, clave);
+        this.getLogins(rut, clave);
         this.sessionVar = true;
         this.loginCorrect = true;
         this.cargando = false;
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
     // const url: string = "https://mynana.herokuapp.com/user/login";
     const url: string = "http://localhost:8080/user/login";
     let payload: any = {rut, password}
-    this.loginsService.postRequest(payload, url)
+    this.configService.postRequest(payload, url)
       .subscribe(logins => {
           localStorage.setItem('currentUser', JSON.stringify(logins));
             this.currentUserSubject.next(logins);
