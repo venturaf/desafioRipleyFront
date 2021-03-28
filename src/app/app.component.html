@@ -1,17 +1,13 @@
 <div class="container">
-        <div class="" style="height: 100%; width: 100%; min-height: 600px;">
-        <app-header></app-header>
-            <div class="text-center">
-                <div *ngIf="cargando">
-                        <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-                </div>
-                
+    <app-header></app-header>
+        <div class="text-center" *ngIf="cargando">
+            <div>
+                <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>
-            <div *ngIf="!cargando">
-                <div *ngIf="!cargando">
-                </div>
-                <router-outlet></router-outlet>
-            </div>
+        </div>
+        <app-meessage></app-meessage>
+        <div *ngIf="!cargando">
+            <router-outlet></router-outlet>
         </div>
     <app-footer></app-footer>
 </div>

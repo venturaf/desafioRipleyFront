@@ -6,7 +6,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="currentUser">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/history']">Listado de movimientos <span class="sr-only">(current)</span></a>
@@ -21,13 +21,33 @@
                         <a class="nav-link" [routerLink]="['/transfer']">Transferencia</a>
                     </li>
                 </ul>
-                <div class="my-2 my-lg-0">
-                    <a class="navbar-brand" [routerLink]="['/login']">salir</a>
-                </div>
+                <a class="navbar-brand" (click)="logout()">Salir</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="!currentUser">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"></a>
+                    </li>
+                </ul>
+                <a class="navbar-brand" [routerLink]="['/register']">Registrarse</a>
+                <a class="navbar-brand" [routerLink]="['/login']">Iniciar sesión</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </nav>
-    </div>
-    <div class="text-center">
-        <img src="/assets/img/Logo_Ripley_banco_2.png" style="height: 50%; width: 50%;" alt="Bienvenido a Banco Desafio Ripley">
     </div>
 </div>

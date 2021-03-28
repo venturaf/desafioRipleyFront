@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { HistoryComponent } from './history/history.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HistoryComponent } from './history/history.component';
     FooterComponent,
     TransferComponent,
     WithdrawComponent,
-    HistoryComponent
+    HistoryComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

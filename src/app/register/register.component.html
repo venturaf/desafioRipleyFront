@@ -4,35 +4,33 @@
 
         <div class="containe">
             <div class="card-body container" style="max-width: 550px;">
-                <h5 class="card-header text-center">Registra a tu cuenta</h5>
+                <h5 class="card-header text-center">Registra tu cuenta</h5>
                 <div class="container" style="max-width: 550px;">
-                    <form [formGroup]="formLogin" *ngIf="cargando">
+                    <form [formGroup]="formRegister">
+                        <label for="name">Nombre</label>
+                        <input type="name" class="form-control" id="name" formControlName="name" aria-describedby="nameHelp" 
+                        placeholder="Ingrese su nombre completo">
+                        <div *ngIf="formRegister.controls['name'].invalid && formRegister.controls['name'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formRegister.controls['name'].errors.required">Es requerido</span>
+                            <span *ngIf="formRegister.controls['name'].errors.name">Campo invalido, por favor validar</span>
+                        </div>
                         <div class="mb-3">
                             <label for="rut" class="form-label">RUT</label>
                             <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Ingresa tu Rut">
-
                         </div>
                         <label for="email">Correo Electronico</label>
                         <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electronico">
-                        <div *ngIf="formLogin.controls['email'].invalid && formLogin.controls['email'].dirty" class="alert alert-danger" role="alert">
-                            <span *ngIf="formLogin.controls['email'].errors.required">  Correo es requerido</span>
-                            <span *ngIf="formLogin.controls['email'].errors.email">Correo no es Valido</span>
+                        <div *ngIf="formRegister.controls['email'].invalid && formRegister.controls['email'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formRegister.controls['email'].errors.required">  Correo es requerido</span>
+                            <span *ngIf="formRegister.controls['email'].errors.email">Correo no es Valido</span>
                         </div>
                         <div class="mb-3">
-                            <label for="clave" class="form-label">Clave</label>
-                            <input type="password" (keyUp.enter)="login()" class="form-control" id="clave" formControlName="clave" placeholder="••••">
+                            <label for="password" class="form-label">Clave</label>
+                            <input type="password" class="form-control" id="password" formControlName="password" placeholder="••••">
                         </div>
-                        <button type="submit" [disabled]="!formLogin.valid" (click)="login()" class="btn btn-primary">Registrar</button>
+                        <button type="submit" [disabled]="!formRegister.valid" (click)="registerUser()" class="btn btn-primary">Registrar</button>
                     </form>
                     <br>
-                    <div *ngIf="!loginCorrect == null">
-                        <div *ngIf="!loginCorrect" class="alert alert-warning" role="alert">
-                            {{message}}
-                        </div>
-                        <div *ngIf="loginCorrect" class="alert alert-warning" role="alert">
-                            {{message}}
-                        </div>
-                    </div>
                     <div>
                         <button class="btn btn-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Volver</button>
                         <a href=""></a>
