@@ -39,8 +39,8 @@ export class TransferComponent implements OnInit {
         let balance = this.formTransfer.value.balance
         let account = this.formTransfer.value.account
         let rut = this.currentUser.rut
-        // let url: string = "https://mynana.herokuapp.com/balance/transfer";
-            let url = "http://localhost:8080/balance/transfer";
+        let url: string = "https://mynana.herokuapp.com/balance/transfer";
+            // url = "http://localhost:8080/balance/transfer";
         let payload: any = {rut, balance, account}
         this.configService.postRequest(payload, url)
             .subscribe(data => {

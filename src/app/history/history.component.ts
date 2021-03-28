@@ -32,7 +32,7 @@ export class HistoryComponent implements OnInit {
         this.cargando = true;
         let rut = this.currentUser.rut
         let url: string = "https://mynana.herokuapp.com/history/findHistory/" + rut;
-            url = "http://localhost:8080/history/findHistory/" + rut;
+            // url = "http://localhost:8080/history/findHistory/" + rut;
         this.configService.getRequest(url)
             .subscribe(data => {
                 localStorage.setItem('currentHistory', JSON.stringify(data));

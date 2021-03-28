@@ -36,8 +36,8 @@ export class RegisterComponent implements OnInit {
         let rut = this.formRegister.value.rut;
         let email = this.formRegister.value.email;
         let password = this.formRegister.value.password;
-        // let url: string = "https://mynana.herokuapp.com/user/";
-            let url = "http://localhost:8080/user/";
+        let url: string = "https://mynana.herokuapp.com/user/";
+            // url = "http://localhost:8080/user/";
         let payload: any = {name, password, rut, email}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
