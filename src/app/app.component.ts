@@ -20,7 +20,7 @@ export class AppComponent {
     ){
       setTimeout(() => {
           this.cargando = false;
-      }, 1000);
+      }, 2000);
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 

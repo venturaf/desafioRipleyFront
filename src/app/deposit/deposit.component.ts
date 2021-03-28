@@ -1,7 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+
+import { ConfigService } from '../config/config.service';
 import { Balance } from '../_models/balance';
+import { User } from '../_models/user';
+
 
 @Injectable({ providedIn: 'root' })
 
@@ -11,21 +14,43 @@ import { Balance } from '../_models/balance';
   styleUrls: ['./deposit.component.css']
 })
 export class DepositComponent implements OnInit {
-    currentBalance: Balance;
+    currentBalance: Balance
+    currentUser: User;
     formDeposit: FormGroup;
     cargando: boolean = true;
     message: String = "";
 
   constructor(
       private creadorFormulario: FormBuilder,
-      private router: Router,
-  ) {}
+      private configService: ConfigService
+  ) {
+        // this.currentBalanceSubject = new BehaviorSubject<Balance>(JSON.parse(localStorage.getItem('currentBalance')));
+        // this.currentBalance = this.currentBalanceSubject.asObservable();
+  }
 
   ngOnInit(): void {
       this.formDeposit = this.creadorFormulario.group({
-          rut:['', Validators.required,],
           balance:['', Validators.required,]
       });
     this.currentBalance = JSON.parse(localStorage.getItem('currentBalance'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
+
+    depositBalance(): void {
+        this.cargando = true;
+        if (this.formDeposit.invalid) {
+                return;
+            }
+        let balance = this.formDeposit.value.balance
+        let rut = this.currentUser.rut
+        let url: string = "https://mynana.herokuapp.com/balance/deposit";
+            url = "http://localhost:8080/balance/deposit";
+        let payload: any = {rut, balance}
+        this.configService.postRequest(payload, url)
+            .subscribe(data => {
+                this.cargando = false;
+                return data;
+            });
+    }
+  
 }

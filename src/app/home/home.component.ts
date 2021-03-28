@@ -1,15 +1,11 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-// import { first } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User } from '../_models/user';
 import { LoginComponent } from '../login/login.component';
 // import { UserService } from '../_services/user.service';
-// import { AuthenticationService } from '../_services/authentication.service';
-
 import { ConfigService } from '../config/config.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { Balance } from '../_models/balance';
-import { AuthenticationService } from '../_services/authentication.service';
 
 @Injectable({ providedIn: 'root' })
 
@@ -27,17 +23,13 @@ export class HomeComponent implements OnInit {
     balanceNow = false;
 
     constructor(
-        // private authenticationService: AuthenticationService,
         private loginComponent: LoginComponent,
         private configService: ConfigService,
     ) 
     { 
-        // this.currentUser = this.authenticationService.currentUserValue;
         this.currentUser = this.loginComponent.currentUserValue;
-        console.log(this.currentUser);
         this.currentBalanceSubject = new BehaviorSubject<Balance>(JSON.parse(localStorage.getItem('currentBalance')));
         this.currentBalance = this.currentBalanceSubject.asObservable();
-        console.log(this.currentBalance);
     }
 
   ngOnInit(): void {
@@ -46,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   getBalance(): void {
     let url: string = "https://mynana.herokuapp.com/balance/current/" + this.currentUser.rut;
-    // url = "http://localhost:8080/balance/current/" + this.currentUser.rut;
+    url = "http://localhost:8080/balance/current/" + this.currentUser.rut;
     this.configService.getRequest(url)
       .subscribe(data => {
           localStorage.setItem('currentBalance', JSON.stringify(data));

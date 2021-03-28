@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { ConfigService } from '../config/config.service';
+import { Balance } from '../_models/balance';
+import { User } from '../_models/user';
+
 @Component({
   selector: 'app-withdraw',
   templateUrl: './withdraw.component.html',
@@ -9,19 +13,39 @@ import { Router } from '@angular/router';
 })
 export class WithdrawComponent implements OnInit {
     formWithdraw: FormGroup;
-    cargando: boolean = true;
+    currentBalance: Balance
+    currentUser: User;
+    cargando: boolean = false;
     message: String = "";
 
   constructor(
       private creadorFormulario: FormBuilder,
-      private router: Router,
+      private configService: ConfigService
   ) { }
 
   ngOnInit(): void {
     this.formWithdraw = this.creadorFormulario.group({
-        rut:['', Validators.compose([Validators.required,])],
         balance:['', Validators.required,]
     });
+    this.currentBalance = JSON.parse(localStorage.getItem('currentBalance'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
+
+  withdrawBalance(): void {
+        this.cargando = true;
+        if (this.formWithdraw.invalid) {
+                return;
+            }
+        let balance = this.formWithdraw.value.balance
+        let rut = this.currentUser.rut
+        let url: string = "https://mynana.herokuapp.com/balance/withdraw";
+            url = "http://localhost:8080/balance/withdraw";
+        let payload: any = {rut, balance}
+        this.configService.postRequest(payload, url)
+            .subscribe(data => {
+                this.cargando = false;
+                return data;
+            });
+    }
 
 }

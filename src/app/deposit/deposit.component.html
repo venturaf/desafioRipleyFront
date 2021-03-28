@@ -4,22 +4,18 @@
         
         <div class="containe">
             <div class="card">
-                <h5 class="card-header">Bienvenido Franner Jose Ventura Contreras</h5>
+                <h5 class="card-header">Bienvenido {{currentUser.name}}</h5>
                 <div class="card-body container" style="max-width: 550px;">
                 <h5 class="card-header text-center">
-                    <div> Realiazar deposito</div>
+                    <div>Realiazar deposito</div>
                     <div>Disponible: {{ currentBalance.balance | currency }}</div>
                 </h5>
                     <form [formGroup]="formDeposit" *ngIf="cargando">
                         <div class="mb-3">
-                            <label for="rut" class="form-label">RUT</label>
-                            <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Ingresar Rut">
-                        </div>
-                        <div class="mb-3">
                             <label for="balance" class="form-label">Monto a depositar</label>
-                            <input type="number" (keyUp.enter)="login()" class="form-control" id="balance" formControlName="balance" placeholder="Monto a depositar">
+                            <input type="number" (keyUp.enter)="depositBalance()" class="form-control" id="balance" formControlName="balance" placeholder="Monto a depositar">
                         </div>
-                        <button type="submit" [disabled]="!formDeposit.valid" (click)="login()" class="btn btn-primary">Depositar</button>
+                        <button type="submit" [disabled]="!formDeposit.valid" (click)="depositBalance()" class="btn btn-primary">Depositar</button>
                     </form>
                     <br>
                     <div>
