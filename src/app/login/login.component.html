@@ -1,12 +1,11 @@
 <div class="card mb-3">
-    <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
     <div class="card-body">
 
         <div class="containe">
             <div class="card-body container" style="max-width: 550px;">
                 <h5 class="card-header text-center">Ingresa a tu cuenta</h5>
                 <div class="container" style="max-width: 550px;">
-                    <form [formGroup]="formLogin" *ngIf="!cargando">
+                    <form [formGroup]="formLogin">
                         <div class="mb-3">
                             <label for="rut" class="form-label">RUT</label>
                             <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Ingresa tu Rut">
@@ -18,14 +17,6 @@
                         <button type="submit" [disabled]="!formLogin.valid" (click)="login()" class="btn btn-primary">Ingresar</button>
                     </form>
                     <br>
-                    <div *ngIf="!loginCorrect == null">
-                        <div *ngIf="!loginCorrect" class="alert alert-warning" role="alert">
-                            {{message}}
-                        </div>
-                        <div *ngIf="loginCorrect" class="alert alert-warning" role="alert">
-                            {{message}}
-                        </div>
-                    </div>
                     <div>
                         <button class="btn btn-link" [routerLink]="['/register']" routerLinkActive="router-link-active">Registrarse</button>
                         <a [routerLink]="['/register']"></a>

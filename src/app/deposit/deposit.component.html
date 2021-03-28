@@ -10,7 +10,7 @@
                     <div>Realizar deposito</div>
                     <div>Disponible: {{ currentBalance.balance | currency }}</div>
                 </h5>
-                    <form [formGroup]="formDeposit" *ngIf="cargando">
+                    <form [formGroup]="formDeposit" >
                         <div class="mb-3">
                             <label for="balance" class="form-label">Monto a depositar</label>
                             <input type="number" (keyUp.enter)="depositBalance()" class="form-control" id="balance" formControlName="balance" placeholder="Monto a depositar">

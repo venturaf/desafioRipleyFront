@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap'
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../_models/user';
+import { AuthenticationService } from '../_services/authentication.service';
 
+import { Injectable } from '@angular/core';
+
+@Injectable()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,22 +17,32 @@ import { User } from '../_models/user';
 export class HeaderComponent implements OnInit {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    private router: Router;
+    private modal: NgbModal;
+    private authenticationService: AuthenticationService
 
-  constructor() {
+  constructor(private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   ngOnInit(): void {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      console.log(this.currentUser);
+
+      if (this.currentUser) {
+            this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/']);
+      }
   }
 
     logout() {
         localStorage.clear();
         this.currentUserSubject.next(null);
         this.currentUser = null;
-        this.router.navigateByUrl('/');
+        this.modal.open;
+        this.router.navigate(['/']);
+        return
     }
 
 }

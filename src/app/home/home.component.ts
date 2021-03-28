@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User } from '../_models/user';
 import { LoginComponent } from '../login/login.component';
-// import { UserService } from '../_services/user.service';
 import { ConfigService } from '../config/config.service';
 import { Balance } from '../_models/balance';
 

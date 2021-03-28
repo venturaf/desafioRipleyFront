@@ -53,31 +53,13 @@ export class LoginComponent implements OnInit {
     }
 
   login() {
-    this.loginCorrect = true;
-    let rut = this.formLogin.value.rut;
     if (this.formLogin.invalid) {
         return;
     }
+    this.loginCorrect = true;
+    let rut = this.formLogin.value.rut;
     this.cargando = true;
     if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
-
-    // this.authenticationService.login(rut, this.formLogin.value.clave)
-    //     .pipe(first())
-    //     .subscribe(
-    //         data => {
-    //             this.loginCorrect = true;
-    //             console.log(data);
-    //             this.router.navigate(['/home']);
-    //         },
-    //         error => {
-    //             this.cargando = false;
-    //             this.loginCorrect = false;
-    //             this.message = "Usuario o clave incorrecta."
-    //         });
-
-    if (this.formLogin.valid) {
-        
-        let rut = this.formLogin.value.rut
         let clave = this.formLogin.value.clave
         if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
         this.getLogins(rut, clave);
@@ -85,10 +67,6 @@ export class LoginComponent implements OnInit {
         this.loginCorrect = true;
         this.cargando = false;
         this.router.navigateByUrl('/home');
-    } else {
-        this.loginCorrect = false;
-        this.message = "Usuario o clave incorrecta."
-    }
   }
 
   getLogins(rut, password): void {
