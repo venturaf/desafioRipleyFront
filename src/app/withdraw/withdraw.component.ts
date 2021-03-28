@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { ConfigService } from '../config/config.service';
 import { Balance } from '../_models/balance';
@@ -39,7 +38,7 @@ export class WithdrawComponent implements OnInit {
         let balance = this.formWithdraw.value.balance
         let rut = this.currentUser.rut
         let url: string = "https://mynana.herokuapp.com/balance/withdraw";
-            // url = "http://localhost:8080/balance/withdraw";
+            url = "http://localhost:8080/balance/withdraw";
         let payload: any = {rut, balance}
         this.configService.postRequest(payload, url)
             .subscribe(data => {

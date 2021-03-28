@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   getBalance(): void {
     let url: string = "https://mynana.herokuapp.com/balance/current/" + this.currentUser.rut;
-        // url = "http://localhost:8080/balance/current/" + this.currentUser.rut;
+        url = "http://localhost:8080/balance/current/" + this.currentUser.rut;
     this.configService.getRequest(url)
       .subscribe(data => {
           localStorage.setItem('currentBalance', JSON.stringify(data));

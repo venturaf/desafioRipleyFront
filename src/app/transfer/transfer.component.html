@@ -1,26 +1,28 @@
 <div class="card mb-3">
     <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
     <div class="card-body">
-        
+
         <div class="containe">
             <div class="card">
                 <h5 class="card-header">Bienvenido {{currentUser.name}}</h5>
                 <div class="card-body container" style="max-width: 550px;">
-                    <h5 class="card-header text-center">Realiazar transferencia</h5>
-                    <form [formGroup]="formTransfer" *ngIf="cargando">
-                        <div class="mb-3">
-                            <label for="rut" class="form-label">RUT</label>
-                            <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Ingresar Rut">
-                        </div>
+                    <h5 class="card-header text-center">
+                        <div>Monto Disponible {{ currentBalance.balance | currency }}</div>
+                    </h5>
+                    <br>
+                    <form [formGroup]="formTransfer">
+                        <h5 class="card-header text-center">
+                            <div>Realizar transferencia</div>
+                        </h5>
                         <div class="mb-3">
                             <label for="balance" class="form-label">Monto a transferir</label>
-                            <input type="number" (keyUp.enter)="login()" class="form-control" id="balance" formControlName="balance" placeholder="Monto a transferir">
+                            <input type="number" (keyUp.enter)="transferBalance()" class="form-control" id="balance" formControlName="balance" placeholder="Monto a transferir">
                         </div>
                         <div class="mb-3">
-                            <label for="rut" class="form-label">Cuenta</label>
-                            <input type="rut" class="form-control" id="rut" formControlName="rut" aria-describedby="rutHelp" placeholder="Nuemro de cuenta a transferir">
+                            <label for="account" class="form-label">Cuenta</label>
+                            <input type="rut" class="form-control" id="account" formControlName="account" aria-describedby="rutHelp" placeholder="Nuemro de cuenta a transferir">
                         </div>
-                        <button type="submit" [disabled]="!formTransfer.valid" (click)="login()" class="btn btn-success btn-primary">Transferir</button>
+                        <button type="submit" [disabled]="!formTransfer.valid" (click)="transferBalance()" class="btn btn-success btn-primary">Transferir</button>
                     </form>
                     <br>
                     <div>

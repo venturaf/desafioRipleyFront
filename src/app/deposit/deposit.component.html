@@ -7,7 +7,7 @@
                 <h5 class="card-header">Bienvenido {{currentUser.name}}</h5>
                 <div class="card-body container" style="max-width: 550px;">
                 <h5 class="card-header text-center">
-                    <div>Realiazar deposito</div>
+                    <div>Realizar deposito</div>
                     <div>Disponible: {{ currentBalance.balance | currency }}</div>
                 </h5>
                     <form [formGroup]="formDeposit" *ngIf="cargando">
