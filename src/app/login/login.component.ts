@@ -92,8 +92,8 @@ export class LoginComponent implements OnInit {
   }
 
   getLogins(rut, password): void {
-    // const url: string = "https://mynana.herokuapp.com/user/login";
-    const url: string = "http://localhost:8080/user/login";
+    let url: string = "https://mynana.herokuapp.com/user/login";
+    url = "http://localhost:8080/user/login";
     let payload: any = {rut, password}
     this.configService.postRequest(payload, url)
       .subscribe(logins => {
