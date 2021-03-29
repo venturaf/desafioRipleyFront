@@ -20,6 +20,7 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 import { HistoryComponent } from './history/history.component';
 import { MessageComponent } from './message/message.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TransferComponent,
     WithdrawComponent,
     HistoryComponent,
-    MessageComponent
+    MessageComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
