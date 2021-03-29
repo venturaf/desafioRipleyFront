@@ -12,15 +12,12 @@ import { User } from '../app/_models/user';
 export class AppComponent {
   title = 'Desafio Ripley';
   currentUser: User;
-  cargando = true;
+  
 
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService
     ){
-      setTimeout(() => {
-          this.cargando = false;
-      }, 1000);
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 

@@ -16,27 +16,36 @@ import { Balance } from '../_models/balance';
 export class HomeComponent implements OnInit {
     private currentBalanceSubject: BehaviorSubject<Balance>;
     public currentBalance: Observable<Balance>;
-    currentUser: User;
-    users:[];
-    balance = 1500000;
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
     balanceNow = false;
+    user;
 
     constructor(
         private loginComponent: LoginComponent,
         private configService: ConfigService,
     ) 
     { 
-        this.currentUser = this.loginComponent.currentUserValue;
+        this.user = this.loginComponent.currentUserValue;
         this.currentBalanceSubject = new BehaviorSubject<Balance>(JSON.parse(localStorage.getItem('currentBalance')));
         this.currentBalance = this.currentBalanceSubject.asObservable();
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
     }
 
   ngOnInit(): void {
+      this.user = this.loginComponent.currentUserValue;
       this.getBalance();
+      
+
   }
 
+  refresh(): void {
+        window.location.reload();
+    }
+
   getBalance(): void {
-    let url: string = "https://mynana.herokuapp.com/balance/current/" + this.currentUser.rut;
+    let url: string = "https://mynana.herokuapp.com/balance/current/" + this.user.rut;
         // url = "http://localhost:8080/balance/current/" + this.currentUser.rut;
     this.configService.getRequest(url)
       .subscribe(data => {

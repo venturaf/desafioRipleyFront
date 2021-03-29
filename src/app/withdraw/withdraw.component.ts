@@ -14,7 +14,6 @@ export class WithdrawComponent implements OnInit {
     formWithdraw: FormGroup;
     currentBalance: Balance
     currentUser: User;
-    cargando: boolean = false;
     message: String = "";
 
   constructor(
@@ -31,7 +30,6 @@ export class WithdrawComponent implements OnInit {
   }
 
   withdrawBalance(): void {
-        this.cargando = true;
         if (this.formWithdraw.invalid) {
                 return;
             }
@@ -42,7 +40,6 @@ export class WithdrawComponent implements OnInit {
         let payload: any = {rut, balance}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
-                this.cargando = false;
                 return data;
             });
     }

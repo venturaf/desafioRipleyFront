@@ -10,7 +10,7 @@ import { ConfigService } from '../config/config.service';
 })
 export class RegisterComponent implements OnInit {
     formRegister: FormGroup;
-    cargando: boolean = true;
+    
     message: String = "";
 
   constructor(
@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
   }
 
     registerUser(): void {
-        this.cargando = false;
         if (this.formRegister.invalid) {
                 return;
             }
@@ -41,7 +40,6 @@ export class RegisterComponent implements OnInit {
         let payload: any = {name, password, rut, email}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
-                this.cargando = true;
                 return data;
             });
     }

@@ -14,7 +14,7 @@ export class TransferComponent implements OnInit {
     formTransfer: FormGroup;
     currentBalance: Balance
     currentUser: User;
-    cargando: boolean = true;
+    
     message: String = "";
 
   constructor(
@@ -32,7 +32,6 @@ export class TransferComponent implements OnInit {
   }
 
     transferBalance(): void {
-        this.cargando = false;
         if (this.formTransfer.invalid) {
                 return;
             }
@@ -44,7 +43,6 @@ export class TransferComponent implements OnInit {
         let payload: any = {rut, balance, account}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
-                this.cargando = true;
                 return data;
             });
     }

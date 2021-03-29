@@ -17,7 +17,6 @@ export class DepositComponent implements OnInit {
     currentBalance: Balance
     currentUser: User;
     formDeposit: FormGroup;
-    cargando: boolean = true;
     message: String = "";
 
   constructor(
@@ -37,7 +36,6 @@ export class DepositComponent implements OnInit {
   }
 
     depositBalance(): void {
-        this.cargando = true;
         if (this.formDeposit.invalid) {
                 return;
             }
@@ -48,7 +46,6 @@ export class DepositComponent implements OnInit {
         let payload: any = {rut, balance}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
-                this.cargando = false;
                 return data;
             });
     }

@@ -13,7 +13,6 @@ export class HistoryComponent implements OnInit {
     private currentHistorySubject: BehaviorSubject<History>;
     public currentHistory: Observable<History>;
     currentUser: User;
-    cargando: boolean = false;
     message: String = "";
 
   constructor(
@@ -29,7 +28,6 @@ export class HistoryComponent implements OnInit {
   }
 
     findHistory(): void {
-        this.cargando = true;
         let rut = this.currentUser.rut
         let url: string = "https://mynana.herokuapp.com/history/findHistory/" + rut;
             // url = "http://localhost:8080/history/findHistory/" + rut;
@@ -39,7 +37,6 @@ export class HistoryComponent implements OnInit {
                 this.currentHistorySubject.next(data);
                 this.currentHistory = data
                 console.log(this.currentHistory);
-                this.cargando = false;
                 return data;
             });
     }

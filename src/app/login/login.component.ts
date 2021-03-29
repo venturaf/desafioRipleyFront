@@ -58,16 +58,19 @@ export class LoginComponent implements OnInit {
     }
     this.loginCorrect = true;
     let rut = this.formLogin.value.rut;
-    this.cargando = true;
     if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
         let clave = this.formLogin.value.clave
         if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
         this.getLogins(rut, clave);
         this.sessionVar = true;
         this.loginCorrect = true;
-        this.cargando = false;
         this.router.navigateByUrl('/home');
+        return
   }
+
+      refresh(): void {
+        window.location.reload();
+    }
 
   getLogins(rut, password): void {
     let url: string = "https://mynana.herokuapp.com/user/login";

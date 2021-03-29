@@ -21,8 +21,10 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService
 
   constructor(private router: Router) {
+      
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+    
   }
 
   ngOnInit(): void {
@@ -35,14 +37,4 @@ export class HeaderComponent implements OnInit {
           this.router.navigate(['/']);
       }
   }
-
-    logout() {
-        localStorage.clear();
-        this.currentUserSubject.next(null);
-        this.currentUser = null;
-        this.modal.open;
-        this.router.navigate(['/']);
-        return
-    }
-
 }
