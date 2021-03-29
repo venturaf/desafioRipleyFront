@@ -19,7 +19,7 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {
       setTimeout(() => {
           this.logout();
-      }, 500);
+      }, 200);
   }
 
     logout() {
