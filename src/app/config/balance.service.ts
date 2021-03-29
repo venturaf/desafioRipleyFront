@@ -23,7 +23,6 @@ deposit(rut, balance): void {
           localStorage.setItem('currentBalance', JSON.stringify(data));
             this.currentBalanceSubject.next(data);
             this.currentBalance = data;
-            console.log(this.currentBalance);
             return data;
       });
   }

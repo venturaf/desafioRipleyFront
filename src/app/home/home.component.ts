@@ -32,10 +32,6 @@ export class HomeComponent implements OnInit {
     this.getBalance();
   }
 
-  refresh(): void {
-        window.location.reload();
-    }
-
   getBalance(): void {
     let url: string = "https://mynana.herokuapp.com/balance/current/" + this.currentUser.rut;
         // url = "http://localhost:8080/balance/current/" + this.currentUser.rut;

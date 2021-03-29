@@ -46,13 +46,7 @@ export class LoginComponent implements OnInit {
         let rut = this.formLogin.value.rut;
         let clave = this.formLogin.value.clave
         if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
-        let user = this.getLogins(rut, clave);
-        // if(user != null){
-            // this.router.navigate(['/home']);
-        // }else{
-        //     localStorage.setItem('message', JSON.stringify("Datos incorrectos"));
-        //     this.router.navigate(['/session']);
-        // }
+        this.getLogins(rut, clave);
         return
   }
 
@@ -70,6 +64,7 @@ export class LoginComponent implements OnInit {
             this.currentUserSubject.next(logins);
             this.currentUser = logins;
             this.router.navigate(['/home']);
+            this.refresh()
       },
       error =>{
         localStorage.setItem('message', JSON.stringify(error));

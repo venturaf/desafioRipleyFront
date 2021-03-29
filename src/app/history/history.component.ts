@@ -36,7 +36,6 @@ export class HistoryComponent implements OnInit {
                 localStorage.setItem('currentHistory', JSON.stringify(data));
                 this.currentHistorySubject.next(data);
                 this.currentHistory = data
-                console.log(this.currentHistory);
                 return data;
             });
     }

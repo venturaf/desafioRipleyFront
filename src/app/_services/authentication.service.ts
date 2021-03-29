@@ -16,7 +16,6 @@ export class AuthenticationService {
     }
 
     public get currentUserValue(): User {
-        console.log(" Atuten");
         return this.currentUserSubject.value;
     }
 
@@ -27,8 +26,6 @@ export class AuthenticationService {
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
                 this.currentUser  = user;
-                console.log("datos usuario");
-                console.log(user)
                 return user;
             }));
     }

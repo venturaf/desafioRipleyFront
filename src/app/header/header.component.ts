@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgbModal} from '@ng-bootstrap/ng-bootstrap'
+import { Router } from '@angular/router';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../_models/user';
-import { AuthenticationService } from '../_services/authentication.service';
 
 import { Injectable } from '@angular/core';
 
@@ -17,8 +15,6 @@ import { Injectable } from '@angular/core';
 export class HeaderComponent implements OnInit {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    private modal: NgbModal;
-    private authenticationService: AuthenticationService
 
   constructor(private router: Router) {
       
@@ -29,8 +25,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log(this.currentUser);
-
       if (this.currentUser) {
             this.router.navigate(['/home']);
         } else {
