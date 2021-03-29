@@ -21,10 +21,8 @@ export class HomeComponent implements OnInit {
     constructor(
         private configService: ConfigService,
     ) 
-    { console.log("asada")
+    { 
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(this.currentUser)
-        console.log("11545456454")
         this.currentBalanceSubject = new BehaviorSubject<Balance>(JSON.parse(localStorage.getItem('currentBalance')));
         this.currentBalance = this.currentBalanceSubject.asObservable();
     }
@@ -46,7 +44,6 @@ export class HomeComponent implements OnInit {
           localStorage.setItem('currentBalance', JSON.stringify(data));
             this.currentBalanceSubject.next(data);
             this.currentBalance = data;
-            console.log(this.currentBalance);
             this.balanceNow = true;
             return data;
       });

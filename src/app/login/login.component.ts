@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfigService } from '../config/config.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../_models/user';
@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private creadorFormulario: FormBuilder,
     private configService: ConfigService,
-    private route: ActivatedRoute,
     private router: Router,
   ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -47,8 +46,13 @@ export class LoginComponent implements OnInit {
         let rut = this.formLogin.value.rut;
         let clave = this.formLogin.value.clave
         if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
-        this.getLogins(rut, clave);
-        this.router.navigate(['/home']);
+        let user = this.getLogins(rut, clave);
+        // if(user != null){
+            // this.router.navigate(['/home']);
+        // }else{
+        //     localStorage.setItem('message', JSON.stringify("Datos incorrectos"));
+        //     this.router.navigate(['/session']);
+        // }
         return
   }
 
@@ -65,6 +69,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentUser', JSON.stringify(logins));
             this.currentUserSubject.next(logins);
             this.currentUser = logins;
+            this.router.navigate(['/home']);
+      },
+      error =>{
+        localStorage.setItem('message', JSON.stringify(error));
+        this.router.navigate(['/session']);
       });
   }
 }

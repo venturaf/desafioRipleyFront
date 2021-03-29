@@ -1,4 +1,22 @@
-<div>
-    <app-menu></app-menu>
-    <router-outlet></router-outlet>
+<div class="card mb-3">
+    <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
+    <div class="card-body">
+        
+        <div class="containe">
+            <div class="card">
+                <h5 class="card-header">Gracias por Registrarse</h5>
+                <div class="card-body container" style="max-width: 550px;">
+                <h5 class="card-header text-center">
+                    <div>{{message}}</div>
+                </h5>
+                    <br>
+                    <div>
+                        <button class="btn btn-link" [routerLink]="['/']" routerLinkActive="router-link-active">Volver</button>
+                        <a href=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

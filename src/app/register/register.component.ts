@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { ConfigService } from '../config/config.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
       private creadorFormulario: FormBuilder,
-      private configService: ConfigService
+      private configService: ConfigService,
+      private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -39,8 +41,14 @@ export class RegisterComponent implements OnInit {
             // url = "http://localhost:8080/user/";
         let payload: any = {name, password, rut, email}
         this.configService.postRequest(payload, url)
-            .subscribe(data => {
-                return data;
+            .subscribe(
+            data => {
+                localStorage.setItem('message', JSON.stringify(data));
+                this.router.navigate(['/session']);
+            },
+            error => {
+                localStorage.setItem('message', JSON.stringify(error));
+                this.router.navigate(['/session']);
             });
     }
 

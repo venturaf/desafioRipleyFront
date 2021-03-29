@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { ConfigService } from '../config/config.service';
 import { Balance } from '../_models/balance';
 import { User } from '../_models/user';
@@ -18,7 +18,8 @@ export class WithdrawComponent implements OnInit {
 
   constructor(
       private creadorFormulario: FormBuilder,
-      private configService: ConfigService
+      private configService: ConfigService,
+      private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +41,8 @@ export class WithdrawComponent implements OnInit {
         let payload: any = {rut, balance}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
-                return data;
+                localStorage.setItem('message', JSON.stringify(data));
+                this.router.navigate(['/message']);
             });
     }
 

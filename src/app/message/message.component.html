@@ -1,11 +1,22 @@
-<ng-template #all let-modal>
-    <div class="modal-header"></div>
-    <div class="modal-body">
-        contenido
-    </div>
-    <div class="modal-footer">
-        <button (click)="modal.close()">OK</button>
-    </div>
-</ng-template>
+<div class="card mb-3">
+    <!-- <img class="card-img-top header" src="" alt="Card image cap"> -->
+    <div class="card-body">
+        
+        <div class="containe">
+            <div class="card">
+                <h5 class="card-header">Bienvenido {{currentUser.name}}</h5>
+                <div class="card-body container" style="max-width: 550px;">
+                <h5 class="card-header text-center">
+                    <div>{{message}}</div>
+                </h5>
+                    <br>
+                    <div>
+                        <button class="btn btn-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Volver</button>
+                        <a href=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<button type="buttom" (click)="message(all)">Modal</button>
+    </div>
+</div>

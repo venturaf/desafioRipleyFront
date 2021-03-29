@@ -9,6 +9,7 @@ import { TransferComponent } from './transfer/transfer.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { HistoryComponent } from './history/history.component';
 import { LogoutComponent } from './logout/logout.component';
+import { MessageComponent } from './message/message.component';
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -21,6 +22,8 @@ const routes: Routes = [
     {path: 'withdraw', component: WithdrawComponent},
     {path: 'history', component: HistoryComponent},
     {path: 'logout', component: LogoutComponent},
+    {path: 'message', component: MessageComponent},
+    
     
     {path: '**', redirectTo: ''},
 ];

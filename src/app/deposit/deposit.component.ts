@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { ConfigService } from '../config/config.service';
 import { Balance } from '../_models/balance';
 import { User } from '../_models/user';
@@ -17,15 +17,12 @@ export class DepositComponent implements OnInit {
     currentBalance: Balance
     currentUser: User;
     formDeposit: FormGroup;
-    message: String = "";
 
   constructor(
       private creadorFormulario: FormBuilder,
-      private configService: ConfigService
-  ) {
-        // this.currentBalanceSubject = new BehaviorSubject<Balance>(JSON.parse(localStorage.getItem('currentBalance')));
-        // this.currentBalance = this.currentBalanceSubject.asObservable();
-  }
+      private configService: ConfigService,
+      private router: Router,
+  ) { }
 
   ngOnInit(): void {
       this.formDeposit = this.creadorFormulario.group({
@@ -46,7 +43,8 @@ export class DepositComponent implements OnInit {
         let payload: any = {rut, balance}
         this.configService.postRequest(payload, url)
             .subscribe(data => {
-                return data;
+                localStorage.setItem('message', JSON.stringify(data));
+                this.router.navigate(['/message']);
             });
     }
   

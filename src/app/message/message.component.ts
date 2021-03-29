@@ -1,5 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
-import { NgbModal} from '@ng-bootstrap/ng-bootstrap'
+
+import { ConfigService } from '../config/config.service';
+import { Balance } from '../_models/balance';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-message',
@@ -7,17 +10,21 @@ import { NgbModal} from '@ng-bootstrap/ng-bootstrap'
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
+    currentBalance: Balance
+    currentUser: User;
+    message: String = "";
 
   constructor(
-      private modal: NgbModal
+      private configService: ConfigService
   ) { }
 
   ngOnInit(): void {
+    this.currentBalance = JSON.parse(localStorage.getItem('currentBalance'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.message = JSON.parse(localStorage.getItem('message'));
   }
 
-  public message(all) {
-        return this.modal.open(all);
-    };
+
 
 }
 
