@@ -17,6 +17,10 @@
                         <button type="submit" [disabled]="!formLogin.valid" (click)="login()" class="btn btn-primary">Ingresar</button>
                     </form>
                     <br>
+                    <div>
+                        <button class="btn btn-link" [routerLink]="['/register']" routerLinkActive="router-link-active">Registrarse</button>
+                        <a [routerLink]="['/register']"></a>
+                    </div>
                 </div>
             </div>
         </div>
