@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../_models/user';
 
@@ -12,25 +11,23 @@ export class LogoutComponent implements OnInit {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-  constructor(private router: Router) { 
+  constructor() { 
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
   }
 
   ngOnInit(): void {
-    this.logout();
+      setTimeout(() => {
+          this.logout();
+      }, 500);
   }
-    
-    refresh(): void {
-        window.location.reload();
-    }
 
     logout() {
         localStorage.removeItem('currentUser');
         localStorage.clear();
         this.currentUserSubject.next(null);
         this.currentUser = null;
-        this.refresh();
+        window.location.reload();
         return
     }
 

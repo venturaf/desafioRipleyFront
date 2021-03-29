@@ -2,7 +2,6 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User } from '../_models/user';
-import { LoginComponent } from '../login/login.component';
 import { ConfigService } from '../config/config.service';
 import { Balance } from '../_models/balance';
 
@@ -16,28 +15,23 @@ import { Balance } from '../_models/balance';
 export class HomeComponent implements OnInit {
     private currentBalanceSubject: BehaviorSubject<Balance>;
     public currentBalance: Observable<Balance>;
-    private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
+    public currentUser:User;
     balanceNow = false;
-    user;
 
     constructor(
-        private loginComponent: LoginComponent,
         private configService: ConfigService,
     ) 
-    { 
-        this.user = this.loginComponent.currentUserValue;
+    { console.log("asada")
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(this.currentUser)
+        console.log("11545456454")
         this.currentBalanceSubject = new BehaviorSubject<Balance>(JSON.parse(localStorage.getItem('currentBalance')));
         this.currentBalance = this.currentBalanceSubject.asObservable();
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
     }
 
   ngOnInit(): void {
-      this.user = this.loginComponent.currentUserValue;
-      this.getBalance();
-      
-
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.getBalance();
   }
 
   refresh(): void {
@@ -45,7 +39,7 @@ export class HomeComponent implements OnInit {
     }
 
   getBalance(): void {
-    let url: string = "https://mynana.herokuapp.com/balance/current/" + this.user.rut;
+    let url: string = "https://mynana.herokuapp.com/balance/current/" + this.currentUser.rut;
         // url = "http://localhost:8080/balance/current/" + this.currentUser.rut;
     this.configService.getRequest(url)
       .subscribe(data => {

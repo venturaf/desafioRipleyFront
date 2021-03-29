@@ -2,12 +2,9 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfigService } from '../config/config.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../_models/user';
-
-import { AuthenticationService } from '../_services/authentication.service';
 
 @Injectable({ providedIn: 'root' })
 
@@ -19,23 +16,15 @@ import { AuthenticationService } from '../_services/authentication.service';
 export class LoginComponent implements OnInit {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-  formLogin: FormGroup;
-  loginCorrect: Boolean = false;
-  cargando: boolean = false;
-  message: String = "";
-  sessionVar: boolean = false;
-  returnUrl: string;
+    formLogin: FormGroup;
+    message: String = "";
 
   constructor(
     private creadorFormulario: FormBuilder,
     private configService: ConfigService,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService,
   ) {
-      if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
-        }
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -49,26 +38,21 @@ export class LoginComponent implements OnInit {
           rut:   ['', Validators.compose([Validators.required,])],
           clave: ['', Validators.required,]
         });
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
   login() {
     if (this.formLogin.invalid) {
         return;
     }
-    this.loginCorrect = true;
-    let rut = this.formLogin.value.rut;
-    if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
+        let rut = this.formLogin.value.rut;
         let clave = this.formLogin.value.clave
         if(rut.indexOf(".") != -1) rut = rut.replace(/\./g,"");
         this.getLogins(rut, clave);
-        this.sessionVar = true;
-        this.loginCorrect = true;
-        this.router.navigateByUrl('/home');
+        this.router.navigate(['/home']);
         return
   }
 
-      refresh(): void {
+    refresh(): void {
         window.location.reload();
     }
 
@@ -81,7 +65,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentUser', JSON.stringify(logins));
             this.currentUserSubject.next(logins);
             this.currentUser = logins;
-            return logins;
       });
   }
 }
